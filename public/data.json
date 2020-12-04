@@ -1,0 +1,154 @@
+[
+  {
+    "title": "Gaming",
+    "wishes": [
+      {
+        "text": "Min ønskeseddel på Steam",
+        "links": [
+          {
+            "tooltip": "Steam ønskeseddel",
+            "url": "http://steamcommunity.com/id/gabaa/wishlist"
+          }
+        ]
+      },
+      {
+        "text": "Nye hovedtelefoner",
+        "links": [
+          {
+            "tooltip": "PriceRunner eksempel",
+            "url": "https://www.pricerunner.dk/pl/94-5256674/Hoeretelefoner/Razer-BlackShark-V2-Sammenlign-Priser"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Dungeons & Dragons",
+    "wishes": [
+      {
+        "text": "Starter Kit",
+        "links": [
+          {
+            "tooltip": "Faraos Cigarer",
+            "url": "https://www.faraos.dk/games/rollespil/dungeonsdragons/dungeonsdragons5thedition/startsaet/starter-set-dungeons-dragons-5th-edition"
+          }
+        ]
+      },
+      {
+        "text": "The Rise of Tiamat",
+        "links": [
+          {
+            "tooltip": "Faraos Cigarer",
+            "url": "https://www.faraos.dk/games/rollespil/dungeonsdragons/dungeonsdragons5thedition/dragons/the-rise-of-tiamat-dungeons-dragons-5th-edition"
+          }
+        ]
+      },
+      {
+        "text": "Wonderdraft",
+        "links": [
+          {
+            "tooltip": "Hjemmeside",
+            "url": "https://www.wonderdraft.net/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Til hjemmet",
+    "wishes": [
+      {
+        "text": "Mandolinjern",
+        "links": [
+          {
+            "tooltip": "Kop & Kande",
+            "url": "https://www.kop-kande.dk/oxo-chefs-mandolinjern-719812687995"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Bøger",
+    "notes": [
+      "Discworld bøger helst i str. 178x110 mm",
+      "Bøger fra Randall Munroe helst i hardback"
+    ],
+    "wishes": [
+      {
+        "text": "Valhalla - den samlede saga (2-5)",
+        "links": [
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/series/71343-valhalla-den-samlede-saga"
+          }
+        ]
+      },
+      {
+        "text": "Pyramids (Discworld #7)",
+        "links": [
+          {
+            "tooltip": "Saxo",
+            "url": "https://www.saxo.com/dk/pyramids_terry-pratchett_paperback_9780552134613"
+          },
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/book/show/64217.Pyramids"
+          }
+        ]
+      },
+      {
+        "text": "Guards! Guards! (Discworld #8)",
+        "links": [
+          {
+            "tooltip": "Saxo",
+            "url": "https://www.saxo.com/dk/guards-guards_terry-pratchett_paperback_9780552134620"
+          },
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/book/show/64216.Guards_Guards_"
+          }
+        ]
+      },
+      {
+        "text": "What If? Serious Scientific Answers to Absurd Hypothetical Questions",
+        "links": [
+          {
+            "tooltip": "Saxo",
+            "url": "https://www.saxo.com/dk/what-if_randall-munroe_hardback_9780544272996"
+          },
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/book/show/21413662-what-if-serious-scientific-answers-to-absurd-hypothetical-questions"
+          }
+        ]
+      },
+      {
+        "text": "Thing Explainer: Complicated Stuff in Simple Words",
+        "links": [
+          {
+            "tooltip": "Saxo",
+            "url": "https://www.saxo.com/dk/thing-explainer_randall-munroe_hardback_9781473620919"
+          },
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/book/show/25329850-thing-explainer"
+          }
+        ]
+      },
+      {
+        "text": "How To: Absurd Scientific Advice for Common Real-World Problems",
+        "links": [
+          {
+            "tooltip": "Saxo",
+            "url": "https://www.saxo.com/dk/how-to_randall-munroe_hardback_9780525537090"
+          },
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/book/show/43852758-how-to"
+          }
+        ]
+      }
+    ]
+  }
+]
