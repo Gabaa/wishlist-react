@@ -1,6 +1,6 @@
 import { makeStyles, Paper } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import WishCategory from './WishCategory';
+import WishCategory from './components/WishCategory';
 
 const useStyles = makeStyles({
   root: {
@@ -13,7 +13,6 @@ const useStyles = makeStyles({
   },
   paperContents: {
     minHeight: "200px",
-    minWidth: "500px",
     margin: "32px",
     display: "flex",
     flexDirection: "column",
@@ -30,6 +29,7 @@ const useStyles = makeStyles({
 function App() {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
   const [data, setData] = useState();
 
   useEffect(() => {
@@ -39,13 +39,17 @@ function App() {
         setData(data);
         setLoading(false);
       })
+      .catch(reason => {
+        setLoading(false);
+        setError(reason);
+      })
   });
 
   return (
     <div className={classes.root}>
       <Paper>
         <div className={classes.paperContents}>
-          <PaperContents loading={loading} data={data} />
+          <PaperContents loading={loading} error={error} data={data} />
         </div>
       </Paper>
     </div>
@@ -53,7 +57,7 @@ function App() {
 }
 
 function PaperContents(props) {
-  let { loading, data } = props;
+  let { loading, error, data } = props;
   let classes = useStyles();
 
   if (loading) {
@@ -62,6 +66,12 @@ function PaperContents(props) {
         <h3>Loading...</h3>
       </div>
     );
+  }
+
+  if (error) {
+    <div className={classes.loading}>
+      <h3>{error}</h3>
+    </div>
   }
 
   return (
