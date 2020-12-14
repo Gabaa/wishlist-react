@@ -1,5 +1,19 @@
 [
   {
+    "title": "Velgørenhed",
+    "wishes": [
+      {
+        "text": "Regnskovscertifikat fra Verdens Skove",
+        "links": [
+          {
+            "tooltip": "verdensskove.org",
+            "url": "https://shop.verdensskove.org/regnskovscertifikater"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Gaming",
     "wishes": [
       {
@@ -146,6 +160,19 @@
           {
             "tooltip": "Goodreads",
             "url": "https://www.goodreads.com/book/show/43852758-how-to"
+          }
+        ]
+      },
+      {
+        "text": "Superintelligence: Paths, Dangers, Strategies",
+        "links": [
+          {
+            "tooltip": "Saxo",
+            "url": "https://www.saxo.com/dk/superintelligence_nick-bostrom_paperback_9780198739838"
+          },
+          {
+            "tooltip": "Goodreads",
+            "url": "https://www.goodreads.com/book/show/20527133-superintelligence"
           }
         ]
       }
