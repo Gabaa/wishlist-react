@@ -1,6 +1,7 @@
 import { makeStyles, Paper } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import WishCategory from './components/WishCategory';
+import { db } from './firebase';
 
 const useStyles = makeStyles({
   root: {
@@ -33,16 +34,15 @@ function App() {
   const [data, setData] = useState();
 
   useEffect(() => {
-    fetch("data.json")
-      .then(resp => resp.json())
-      .then(data => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(reason => {
-        setLoading(false);
-        setError(reason);
-      })
+    const callback = (snapshot) => {
+      setData(snapshot.val());
+      setLoading(false);
+    };
+    const cancelCallback = (err) => {
+      setError(err);
+      setLoading(false);
+    };
+    db.ref('data').on('value', callback, cancelCallback);
   });
 
   return (
