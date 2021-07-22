@@ -1,4 +1,5 @@
-import { makeStyles, Paper } from '@material-ui/core';
+import { AppBar, IconButton, makeStyles, Paper, Toolbar, Typography } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 import React, { useEffect, useState } from 'react';
 import WishCategory from './components/WishCategory';
 import { db } from './firebase';
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <div className={classes.root}>
+      <WishlistAppBar />
       <Paper>
         <div className={classes.paperContents}>
           <PaperContents loading={loading} error={error} data={data} />
@@ -57,6 +59,19 @@ function App() {
       </Paper>
     </div>
   );
+}
+
+function WishlistAppBar(props) {
+  return <AppBar>
+    <Toolbar>
+      <IconButton edge="start">
+        <MenuIcon />
+      </IconButton>
+      <Typography variant="h6">
+        Mikkels ønskeseddel
+      </Typography>
+    </Toolbar>
+  </AppBar>;
 }
 
 function PaperContents(props) {
