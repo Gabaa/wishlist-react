@@ -7,6 +7,7 @@ const useStyles = makeStyles({
   root: {
     minHeight: "100vh",
     backgroundColor: "#b9bfdf",
+    padding: "32px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
