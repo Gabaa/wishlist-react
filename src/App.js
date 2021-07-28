@@ -8,11 +8,13 @@ const useStyles = makeStyles({
   root: {
     minHeight: "100vh",
     backgroundColor: "#b9bfdf",
-    padding: "32px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+  },
+  paper: {
+    margin: "32px",
   },
   paperContents: {
     minHeight: "200px",
@@ -53,7 +55,7 @@ function App() {
   return (
     <div className={classes.root}>
       <WishlistAppBar />
-      <Paper>
+      <Paper className={classes.paper}>
         <div className={classes.paperContents}>
           <PaperContents loading={loading} error={error} data={data} />
         </div>
@@ -63,7 +65,7 @@ function App() {
 }
 
 function WishlistAppBar(props) {
-  return <AppBar>
+  return <AppBar position="sticky">
     <Toolbar>
       <IconButton edge="start">
         <MenuIcon />
