@@ -42,8 +42,11 @@ function App() {
       setError(err);
       setLoading(false);
     };
-    db.ref('data').on('value', callback, cancelCallback);
-  });
+    const dataRef = db.ref('data');
+    dataRef.on('value', callback, cancelCallback);
+
+    return () => dataRef.off('value', callback);
+  }, []);
 
   return (
     <div className={classes.root}>
