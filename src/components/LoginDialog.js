@@ -33,7 +33,7 @@ function LoginDialog(props) {
         handleClose();
       })
       .catch(err => {
-        setError(err.code === 'auth/wrong-password' ? 'Wrong password.' : err.message);
+        setError(err.code === 'auth/wrong-password' ? 'Forkert password.' : 'Der opstod en fejl:', err.message);
         console.log("Error signing in with email and password", err);
       });
   };
@@ -64,8 +64,8 @@ function LoginDialog(props) {
       </DialogContentText>}
     </DialogContent>
     <DialogActions>
-      <Button color="primary" onClick={handleClose}>Cancel</Button>
-      <Button color="primary" onClick={handleConfirm}>Confirm</Button>
+      <Button color="primary" onClick={handleClose}>Annuller</Button>
+      <Button color="primary" onClick={handleConfirm}>OK</Button>
     </DialogActions>
   </Dialog>
 }

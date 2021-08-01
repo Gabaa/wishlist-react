@@ -82,7 +82,7 @@ function PaperContents(props) {
   if (loading) {
     return (
       <div className={classes.loading}>
-        <h3>Loading...</h3>
+        <h3>Indlæser...</h3>
       </div>
     );
   }

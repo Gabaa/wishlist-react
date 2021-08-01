@@ -7,11 +7,13 @@ function WishlistAppBar(props) {
   return <AppBar position="sticky">
     <Toolbar>
       <Typography style={{ flexGrow: 1 }}>
-        {auth.currentUser?.email}
+        {auth.currentUser ? <>
+          Logget ind som <i>{auth.currentUser.email}</i>
+        </> : null}
       </Typography>
 
       <Button variant="contained" color="info" onClick={props.onLoginButtonClick}>
-        Log in
+        Log ind
       </Button>
     </Toolbar>
   </AppBar>;
