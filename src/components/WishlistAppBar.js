@@ -44,7 +44,7 @@ function CreateUserButton() {
 
   return <>
     <AppBarButton onClick={() => setDialogOpen(true)}>
-      Lav en ny bruger
+      Opret en ny bruger
     </AppBarButton>
 
     <CreateUserDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />

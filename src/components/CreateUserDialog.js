@@ -39,10 +39,10 @@ function CreateUserDialog(props) {
   };
 
   return <Dialog open={props.open} onClose={handleClose}>
-    <DialogTitle>Lav en ny bruger</DialogTitle>
+    <DialogTitle>Opret en ny bruger</DialogTitle>
     <DialogContent>
       <DialogContentText>
-        Lav en ny bruger med email og password. Det er nødvendigt for at kunne reservere gaver.
+        Opret en ny bruger med email og password. Det er nødvendigt for at kunne reservere gaver.
       </DialogContentText>
       <form className={classes.form} onSubmit={handleConfirm}>
         <TextField
