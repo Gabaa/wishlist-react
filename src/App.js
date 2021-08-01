@@ -1,112 +1,18 @@
-import { makeStyles, Paper } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
-import LoginDialog from './components/LoginDialog';
-import WishCategory from './components/WishCategory';
-import WishlistAppBar from './components/WishlistAppBar';
-import { db } from './firebase';
+import React, { createContext } from 'react';
+import MainView from './components/MainView';
+import { auth, db } from './firebase';
 
-const useStyles = makeStyles({
-  root: {
-    minHeight: "100vh",
-    backgroundColor: "#b9bfdf",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    margin: "32px",
-  },
-  paperContents: {
-    minHeight: "200px",
-    margin: "32px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-  header: {
-    textAlign: "center",
-  },
-  loading: {
-    textAlign: "center",
-  }
-});
+export const DatabaseContext = createContext(db);
+export const AuthenticationContext = createContext(auth);
 
 function App() {
-  const classes = useStyles();
-
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    const callback = (snapshot) => {
-      setData(snapshot.val());
-      setLoading(false);
-    };
-    const cancelCallback = (err) => {
-      setError(err);
-      setLoading(false);
-    };
-    const dataRef = db.ref('data');
-    dataRef.on('value', callback, cancelCallback);
-
-    return () => dataRef.off('value', callback);
-  }, []);
-
-  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
-
-  return <>
-    <WishlistAppBar onLoginButtonClick={() => setLoginDialogOpen(true)} />
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <div className={classes.paperContents}>
-          <PaperContents loading={loading} error={error} data={data} />
-        </div>
-      </Paper>
-    </div>
-    <LoginDialog
-      open={loginDialogOpen}
-      onClose={() => setLoginDialogOpen(false)}
-    />
-  </>;
-}
-
-function PaperContents(props) {
-  let { loading, error, data } = props;
-  let classes = useStyles();
-
-  if (loading) {
-    return (
-      <div className={classes.loading}>
-        <h3>Loading...</h3>
-      </div>
-    );
-  }
-
-  if (error) {
-    <div className={classes.loading}>
-      <h3>{error}</h3>
-    </div>
-  }
 
   return (
-    <>
-      <header className={classes.header}>
-        <h1>Mikkels ønskeseddel</h1>
-      </header>
-
-      <p><i>Links til eksempler findes til højre for ønsket!</i></p>
-
-      <div className={classes.content}>
-        {data.map(wishCategory => {
-          let { title, notes, wishes } = wishCategory;
-          return (
-            <WishCategory key={title} title={title} notes={notes} wishes={wishes} />
-          );
-        })}
-      </div>
-    </>
+    <AuthenticationContext.Provider value={auth}>
+      <DatabaseContext.Provider value={db}>
+        <MainView />
+      </DatabaseContext.Provider>
+    </AuthenticationContext.Provider>
   );
 }
 
