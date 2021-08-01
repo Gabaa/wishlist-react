@@ -1,22 +1,59 @@
 import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
-import React from 'react';
-import { auth } from '../firebase';
+import React, { useContext, useState } from 'react';
+import { AuthenticationContext } from '../App';
+import LoginDialog from './LoginDialog';
 
 
-function WishlistAppBar(props) {
+function WishlistAppBar() {
+  const [user, setUser] = useState();
+
+  const auth = useContext(AuthenticationContext);
+  auth.onAuthStateChanged(setUser);
+
   return <AppBar position="sticky">
     <Toolbar>
       <Typography style={{ flexGrow: 1 }}>
-        {auth.currentUser ? <>
-          Logget ind som <i>{auth.currentUser.email}</i>
+        {user ? <>
+          Logget ind som <i>{user.email}</i>
         </> : null}
       </Typography>
 
-      <Button variant="contained" color="info" onClick={props.onLoginButtonClick}>
-        Log ind
-      </Button>
+      {user ? <LogoutButton /> : <LoginButton />}
     </Toolbar>
   </AppBar>;
+}
+
+function LoginButton() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  return <>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={() => setDialogOpen(true)}>
+      Log ind
+    </Button>
+
+    <LoginDialog
+      open={dialogOpen}
+      onClose={() => setDialogOpen(false)}
+    />
+  </>
+
+}
+
+function LogoutButton() {
+  const auth = useContext(AuthenticationContext);
+
+  return <>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={() => auth.signOut()}
+    >
+      Log ud
+    </Button>
+  </>
 }
 
 export default WishlistAppBar;

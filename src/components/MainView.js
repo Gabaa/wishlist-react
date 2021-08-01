@@ -1,7 +1,6 @@
 import { makeStyles, Paper } from '@material-ui/core';
 import React, { useContext, useEffect, useState } from 'react';
 import { DatabaseContext } from '../App';
-import LoginDialog from './LoginDialog';
 import WishCategory from './WishCategory';
 import WishlistAppBar from './WishlistAppBar';
 
@@ -57,10 +56,8 @@ function MainView() {
     return () => dataRef.off('value', callback);
   }, [db]);
 
-  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
-
   return <>
-    <WishlistAppBar onLoginButtonClick={() => setLoginDialogOpen(true)} />
+    <WishlistAppBar />
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <div className={classes.paperContents}>
@@ -68,10 +65,6 @@ function MainView() {
         </div>
       </Paper>
     </div>
-    <LoginDialog
-      open={loginDialogOpen}
-      onClose={() => setLoginDialogOpen(false)}
-    />
   </>;
 }
 
