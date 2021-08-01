@@ -1,6 +1,7 @@
 import { AppBar, Button, Toolbar, Typography } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import { AuthenticationContext } from '../App';
+import CreateUserDialog from './CreateUserDialog';
 import LoginDialog from './LoginDialog';
 
 
@@ -18,7 +19,10 @@ function WishlistAppBar() {
         </> : null}
       </Typography>
 
-      {user ? <LogoutButton /> : <LoginButton />}
+      {user ? <LogoutButton /> : <>
+        <LoginButton />
+        <CreateUserButton />
+      </>}
     </Toolbar>
   </AppBar>;
 }
@@ -27,33 +31,44 @@ function LoginButton() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return <>
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={() => setDialogOpen(true)}>
+    <AppBarButton onClick={() => setDialogOpen(true)}>
       Log ind
-    </Button>
+    </AppBarButton>
 
-    <LoginDialog
-      open={dialogOpen}
-      onClose={() => setDialogOpen(false)}
-    />
+    <LoginDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
   </>
+}
 
+function CreateUserButton() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  return <>
+    <AppBarButton onClick={() => setDialogOpen(true)}>
+      Lav en ny bruger
+    </AppBarButton>
+
+    <CreateUserDialog open={dialogOpen} onClose={() => setDialogOpen(false)} />
+  </>
 }
 
 function LogoutButton() {
   const auth = useContext(AuthenticationContext);
 
   return <>
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={() => auth.signOut()}
-    >
+    <AppBarButton onClick={() => auth.signOut()}>
       Log ud
-    </Button>
+    </AppBarButton>
   </>
+}
+
+function AppBarButton(props) {
+  return <Button
+    variant="contained"
+    style={{ margin: '4px' }}
+    onClick={props.onClick}
+  >
+    {props.children}
+  </Button>
 }
 
 export default WishlistAppBar;
