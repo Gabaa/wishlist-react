@@ -27,7 +27,6 @@ function CreateUserDialog(props) {
   };
 
   const handleConfirm = () => {
-    // TODO: Handle validation and login
     auth.createUserWithEmailAndPassword(email, password)
       .then(_ => {
         handleClose();
