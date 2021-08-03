@@ -1,7 +1,6 @@
-import { List, ListItem, ListItemText, IconButton, ListItemSecondaryAction, Collapse } from '@material-ui/core';
-import ExpandLess from '@material-ui/icons/ExpandLess';
+import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItem, ListItemText, ListSubheader, Typography } from '@material-ui/core';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import React, { useState } from "react";
+import React from "react";
 
 function WishList(props) {
   const { data } = props;
@@ -23,34 +22,57 @@ function WishCategory(props) {
     <div>
       <h3>{title}</h3>
 
-      {notes ? notes.map((note, i) => <p key={i}><i>{note}</i></p>) : null}
+      {notes ? notes.map((note, i) => (
+        <p key={i}>
+          <i>
+            {note}
+          </i>
+        </p>)
+      ) : null}
 
-      <List>
+      <Box>
         {wishes.map((wish, i) => <Wish key={i} wish={wish} />)}
-      </List>
+      </Box>
     </div >
   );
 }
 
 function Wish(props) {
-  let { text, links } = props.wish;
-
-  const [expanded, setExpanded] = useState(false);
+  let { text, details, links } = props.wish;
+  const hasDetails = !!details;
+  const hasLinks = !!links;
 
   return (
-    <>
-      <ListItem button>
-        <ListItemText primary={text} />
-        <ListItemSecondaryAction>
-          <IconButton disabled={!links} onClick={() => setExpanded(!expanded)}>
-            {expanded ? <ExpandLess /> : <ExpandMore />}
-          </IconButton>
-        </ListItemSecondaryAction>
-      </ListItem>
-      <Collapse in={expanded}>
-        TODO: Vis links og reservationer her
-      </Collapse>
-    </>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+      >
+        <Typography>
+          {text}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        {hasDetails ? (
+          <Typography sx={{ padding: '0 16px 8px' }}>{details}</Typography>
+        ) : null}
+        {hasLinks ? <WishLinkList links={links} /> : null}
+        {/* TODO: Vis også reservationer her */}
+      </AccordionDetails>
+    </Accordion>
+  );
+}
+
+function WishLinkList(props) {
+  const { links } = props;
+
+  return (
+    <List subheader={<ListSubheader>Links</ListSubheader>}>
+      {links.map((link, i) => (
+        <ListItem button dense component='a' href={link.url} target="_blank" rel="noreferrer">
+          <ListItemText primary={link.tooltip} />
+        </ListItem>)
+      )}
+    </List>
   );
 }
 
