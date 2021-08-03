@@ -1,8 +1,9 @@
-import { makeStyles, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import React, { useContext, useEffect, useState } from 'react';
 import { DatabaseContext } from '../App';
-import WishCategory from './WishCategory';
-import WishlistAppBar from './WishlistAppBar';
+import WishList from './WishList';
+import AppBar from './AppBar';
 
 
 const useStyles = makeStyles({
@@ -15,6 +16,8 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
   paper: {
+    width: '80%',
+    maxWidth: '800px',
     margin: "32px",
   },
   paperContents: {
@@ -57,18 +60,18 @@ function MainView() {
   }, [db]);
 
   return <>
-    <WishlistAppBar />
+    <AppBar />
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <div className={classes.paperContents}>
-          <PaperContents loading={loading} error={error} data={data} />
+          <WishlistPaper loading={loading} error={error} data={data} />
         </div>
       </Paper>
     </div>
   </>;
 }
 
-function PaperContents(props) {
+function WishlistPaper(props) {
   let { loading, error, data } = props;
   let classes = useStyles();
 
@@ -92,15 +95,8 @@ function PaperContents(props) {
         <h1>Mikkels ønskeseddel</h1>
       </header>
 
-      <p><i>Links til eksempler findes til højre for ønsket!</i></p>
-
       <div className={classes.content}>
-        {data.map(wishCategory => {
-          let { title, notes, wishes } = wishCategory;
-          return (
-            <WishCategory key={title} title={title} notes={notes} wishes={wishes} />
-          );
-        })}
+        <WishList data={data} />
       </div>
     </>
   );

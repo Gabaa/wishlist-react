@@ -1,18 +1,8 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import { AuthenticationContext } from '../App';
 
-const useStyles = makeStyles({
-  form: {
-    display: 'flex',
-    flexFlow: 'column nowrap',
-  },
-});
-
 function LoginDialog(props) {
-  const classes = useStyles();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -27,24 +17,30 @@ function LoginDialog(props) {
   };
 
   const handleConfirm = () => {
-    // TODO: Handle validation and login
     auth.signInWithEmailAndPassword(email, password)
       .then(_ => {
         handleClose();
       })
       .catch(err => {
-        setError(err.code === 'auth/wrong-password' ? 'Forkert password.' : 'Der opstod en fejl:', err.message);
+        setError(err.code === 'auth/wrong-password' ? 'Forkert password.' : 'Der opstod en fejl: ' + err.message);
         console.log("Error signing in with email and password", err);
       });
+  };
+
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      handleConfirm();
+    }
   };
 
   return <Dialog open={props.open} onClose={handleClose}>
     <DialogTitle>Log ind</DialogTitle>
     <DialogContent>
-      <DialogContentText>
-        Log ind med email og password. Det er nødvendigt for at kunne reservere gaver.
-      </DialogContentText>
-      <form className={classes.form} onSubmit={handleConfirm}>
+      <Stack spacing={2}>
+        <DialogContentText>
+          Log ind med email og password. Det er nødvendigt for at kunne reservere gaver.
+        </DialogContentText>
+
         <TextField
           label="Email"
           type="email"
@@ -57,11 +53,13 @@ function LoginDialog(props) {
           type="password"
           value={password}
           onInput={e => setPassword(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
-      </form>
-      {<DialogContentText color="error">
-        {error}
-      </DialogContentText>}
+
+        {<DialogContentText color="error">
+          {error}
+        </DialogContentText>}
+      </Stack>
     </DialogContent>
     <DialogActions>
       <Button color="primary" onClick={handleClose}>Annuller</Button>
