@@ -2,7 +2,6 @@ import { Accordion, AccordionDetails, AccordionSummary, List, ListItem, ListItem
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import React, { useContext, useEffect, useState } from 'react';
 import { DatabaseContext } from '../App';
-import Reservation from './Reservation';
 
 function Wish(props) {
   const [data, setData] = useState();
@@ -40,7 +39,6 @@ function Wish(props) {
           <Typography sx={{ padding: '0 16px 8px' }}>{data.details}</Typography>
         ) : null}
         {!!data?.links ? <WishLinkList links={data.links} /> : null}
-        <Reservation wish={props.wish} />
         {/* TODO: Vis også reservationer her */}
         {false ? (
           <div>Hello</div>
