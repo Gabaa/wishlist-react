@@ -2,7 +2,7 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import React from 'react';
 import WishList from './WishList';
-import AppBar from './AppBar';
+// import AppBar from './AppBar';
 
 
 const useStyles = makeStyles({
@@ -38,7 +38,7 @@ function MainView() {
   const classes = useStyles();
 
   return <>
-    <AppBar />
+    {/* <AppBar /> */}
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <div className={classes.paperContents}>
